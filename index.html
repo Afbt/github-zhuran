@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .box{
+        margin: 100px auto;
+        width: 600px;
+        height: 400px;
+        position: relative;
+        border: 1px solid #000;
+    }
+    .img{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .img ul li{
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: none;
+    }
+    .dian{
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        margin-left: -50px;
+        width: 100px;
+        height: 10px;
+    }
+    .dian ul li{
+        float: left;
+        width: 10px;
+        height: 10px;
+        margin: 0 5px 0;
+        border-radius: 50%;
+        background-color: pink;
+        cursor: pointer;
+    }
+    .dian ul li.cur{
+        background-color: green;
+    }
+
+    .left,.right {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        position: absolute;
+        top: 50%;
+        margin-top: -25px;
+        background-color: rgba(0, 0, 0, .3);
+        color: #fff;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    .right{
+        right: 0;
+    }
+</style>
+<body>
+<div class="box">
+    <div class="img">
+        <ul>
+            <li><img src="./img/1.jpg" alt=""/></li>
+            <li><img src="./img/2.jpg" alt=""/></li>
+            <li><img src="./img/3.jpg" alt=""/></li>
+            <li><img src="./img/4.jpg" alt=""/></li>
+            <li><img src="./img/5.jpg" alt=""/></li>
+        </ul>
+    </div>
+    <div class="dian">
+        <ul>
+            <li class="cur"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="left"> < </div>
+    <div class="right"> > </div>
+</div>
+</body>
+</html>
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+        var index = 0;
+        $(".img ul li").eq(0).fadeIn();
+        function play(){
+            $(".dian ul li").eq(index).addClass("cur").siblings().removeClass("cur");
+            $(".img ul li").eq(index).fadeIn().siblings().fadeOut();
+        }
+        $(".dian ul li").mouseover(function(){
+            index = $(this).index();
+            play();
+        });
+        function right(){
+//            if(index==4){
+//                index=0;
+//            }else{
+//                index++;
+//            }
+            index==4?index=0:index++;
+            play();
+        }
+        $(".right").click(right);
+        $(".left").click(function(){
+//            if(index==0){
+//                index=4;
+//            }else{
+//                index--;
+//            }
+            index==0?index=4:index--;
+            play();
+        });
+        var timer = setInterval(right,1000);
+        $(".box").mouseover(function () {
+            clearInterval(timer)
+        })
+        $(".box").mouseout(function () {
+            timer = setInterval(right,1000);
+        })
+</script>
+
