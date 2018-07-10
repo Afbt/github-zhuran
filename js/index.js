@@ -1,9 +1,4 @@
-/*
- * @Author: 万少爷宝宝 
- * @Date: 2017-10-12 10:09:39 
- * @Last Modified by: 万少爷宝宝
- * @Last Modified time: 2017-10-13 17:02:41
- */
+
 
 $(function () {
   $('#fullpage').fullpage({
